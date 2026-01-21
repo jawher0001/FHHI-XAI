@@ -199,7 +199,7 @@ def plot_one_image_pcx_explanation(
     attr = attribution(x_copy, condition, composite, record_layer=[layer], init_rel=1)
 
     # Heatmap
-    heatmap_pil = zimage.imgify(attr.heatmap.detach().cpu(), cmap="bwr", symmetric=True, level=3)
+    heatmap_pil = zimage.imgify(attr.heatmap.detach().cpu(), cmap="bwr", symmetric=True, level=10)
     print("[attr] base heatmap computed")
 
     # Build binary mask from prediction argmax==1
@@ -326,7 +326,7 @@ def plot_one_image_pcx_explanation(
     print("[proto] computing prototype attributions")
     attr_p = attribution(data_p.requires_grad_(), [{"y": 1}], composite, record_layer=[layer])
     cond_heatmap_p, _, _, _ = attribution(data_p.requires_grad_(), conditions, composite)
-    proto_heatmap_pil = zimage.imgify(attr_p.heatmap, cmap="bwr", symmetric=True, level=3)
+    proto_heatmap_pil = zimage.imgify(attr_p.heatmap, cmap="bwr", symmetric=True, level=10)
 
     # Prototype mask
     print("[proto] building prototype mask")
@@ -407,7 +407,7 @@ def plot_one_image_pcx_explanation(
                 if r == 0:
                     ax.set_title("cond. heatmap")
                 # cond heatmap for r-th concept
-                hm_pil = zimage.imgify(cond_heatmaps[r], symmetric=True, cmap="bwr", level=3)
+                hm_pil = zimage.imgify(cond_heatmaps[r], symmetric=True, cmap="bwr", level=10)
                 hm_res = resize(hm_pil)
                 ax.imshow(hm_res)
                 ax.set_ylabel(f"concept {topk_ind[r]}\n relevance: {(topk_rel[r] * 100):.1f}%")
@@ -455,7 +455,7 @@ def plot_one_image_pcx_explanation(
             elif c == 4:
                 if r == 0:
                     ax.set_title("Prot localization")
-                hm_pil_p = zimage.imgify(cond_heatmap_p[r], symmetric=True, cmap="bwr", level=3)
+                hm_pil_p = zimage.imgify(cond_heatmap_p[r], symmetric=True, cmap="bwr", level=10)
                 ax.imshow(resize(hm_pil_p))
                 ax.yaxis.set_label_position("right")
                 ax.set_ylabel(f"concept {topk_ind[r]}\n relevance: {(float(mean[topk_ind[r]]) * 100):.1f}%")

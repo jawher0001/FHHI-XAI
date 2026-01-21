@@ -41,7 +41,8 @@ class FloodDataset(BaseDataset):
         # if None, default to -1 (matches PIDNet configs)
         ignore_label: Optional[int] = None,
         base_size: int = 2048,
-        crop_size: Tuple[int, int] = (1280, 720),
+        # Match flood_dataset default (H, W) = (720, 1280) to keep PCX aligned
+        crop_size: Tuple[int, int] = (720, 1280),
         scale_factor: int = 16,
         mean: List[float] = [0.485, 0.456, 0.406],
         std: List[float] = [0.229, 0.224, 0.225],
@@ -73,7 +74,7 @@ class FloodDataset(BaseDataset):
             split = "train"
 
         # allow dataset to live under root/General_Flood_v3 or directly under root
-        self.dataset_root = os.path.join(root, "General_Flood_v3")
+        self.dataset_root = os.path.join(root, "BRK-data")
         if not os.path.isdir(self.dataset_root):
             self.dataset_root = root
 
