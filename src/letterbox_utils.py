@@ -5,7 +5,7 @@ import numpy as np
 import math
 
 # Import the exact same letterbox function used by inferer.py
-from YOLOV6.yolov6.data.data_augment import letterbox
+from yolov6.data.data_augment import letterbox
 
 import numpy as np
 
