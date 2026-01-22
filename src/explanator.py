@@ -310,7 +310,7 @@ class Explanator:
         # layer = "module.backbone.ERBlock_6.2.cspsppf.cv7.block.conv"
         # This one suggested by Jawher for PCX
         layer = 'module.backbone.ERBlock_3.0.rbr_dense.conv'
-        prototype_dict = {0: 3, 1: 3}
+        prototype_dict = {0: 3, 1: 4}
 
         mode = "relevance"
 
