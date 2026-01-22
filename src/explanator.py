@@ -23,7 +23,7 @@ from src.entities import get_person_vehicle_detection_explanation_entity, get_fl
 from src.minio_client import FHHI_MINIO_BUCKET
 from src.memory_logging import log_cuda_memory
 from src.letterbox_utils import letterbox_transform, rescale_boxes, check_img_size
-from YOLOV6.yolov6.data.data_augment import letterbox
+from yolov6.data.data_augment import letterbox
 
 
 
@@ -314,9 +314,9 @@ class Explanator:
 
         mode = "relevance"
 
-        crp_output_dir = "output_original/crp/yolo_person_car"
-        pcx_output_dir = "output_original/pcx/yolo_person_car"
-        ref_imgs_path = "output_original/ref_imgs/ref_imgs_12"
+        crp_output_dir = "output/crp/yolo_person_car"
+        pcx_output_dir = "output/pcx/yolo_person_car"
+        ref_imgs_path = "output/ref_imgs/ref_imgs_12"
 
         # Get original image shape (H, W)
         original_shape = image.shape[:2]
