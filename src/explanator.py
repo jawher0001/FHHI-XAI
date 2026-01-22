@@ -273,7 +273,7 @@ class Explanator:
     def person_car_dataset_orig(self):
         """Dataset without transform for accessing original high-res images."""
         if not hasattr(self, '_person_car_dataset_orig') or self._person_car_dataset_orig is None:
-            person_car_data_path = os.path.join(self.project_root, "YOLOV6", "data", "original")
+            person_car_data_path = os.path.join(self.project_root, "data", "person_car_detection_data", "original_BRK")
             self._person_car_dataset_orig = PersonCarDataset(
                 root_dir=person_car_data_path,
                 split="train",
@@ -284,7 +284,7 @@ class Explanator:
     def load_person_vehicle_model(self):
         # Load the person/vehicle detection model
         model_name = "yolov6s6"
-        person_vehicle_model_path = os.path.join(self.project_root, "YOLOV6", "weights", "trial", "best_ckpt_original.pt")
+        person_vehicle_model_path = os.path.join(self.project_root, "models", "best_ckpt_original.pt")
         model = get_model(model_name=model_name, classes=2, ckpt_path=person_vehicle_model_path, device=self.device,
                           dtype=self.dtype)
         model.eval()
@@ -292,7 +292,7 @@ class Explanator:
 
     def load_person_car_data(self):
         transform = partial(letterbox_transform, target_size=640, stride=64, half=False, auto=False)
-        person_car_data_path = os.path.join(self.project_root, "YOLOV6", "data", "original")
+        person_car_data_path = os.path.join(self.project_root, "data", "person_car_detection_data", "original_BRK")
         dataset = PersonCarDataset(root_dir=person_car_data_path, split="train", transform=transform)
         return dataset
     def explain_person_vehicle_detection(self, original_image_bucket: str, original_image_filename: str,
